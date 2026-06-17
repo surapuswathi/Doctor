@@ -1,0 +1,280 @@
+/* Import Google Fonts and Bootstrap dependencies */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+  --primary-hsl: 174, 84%, 41%;
+  --secondary-hsl: 220, 85%, 57%;
+  --bg-dark-hsl: 222, 47%, 7%;
+  --bg-card-hsl: 222, 47%, 11%;
+  --border-hsl: 222, 35%, 18%;
+  --text-hsl: 210, 40%, 98%;
+  --text-muted-hsl: 215, 20%, 65%;
+
+  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --glass-bg: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+  --glass-blur: blur(12px) saturate(180%);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background: radial-gradient(circle at 50% 0%, hsl(222, 50%, 15%) 0%, hsl(var(--bg-dark-hsl)) 70%);
+  color: hsl(var(--text-hsl));
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px;
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.45);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  border-color: hsla(var(--primary-hsl), 0.4);
+  box-shadow: 0 12px 30px 0 rgba(0, 242, 254, 0.15);
+  background: rgba(30, 41, 59, 0.6);
+}
+
+/* Form Styling */
+.glass-form-control {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: hsl(var(--text-hsl));
+  transition: all 0.2s ease;
+}
+
+.glass-form-control:focus {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: hsl(var(--primary-hsl));
+  box-shadow: 0 0 0 3px hsla(var(--primary-hsl), 0.25);
+  color: #fff;
+}
+
+.glass-form-control::placeholder {
+  color: hsl(var(--text-muted-hsl));
+  opacity: 0.6;
+}
+
+select.glass-form-control option {
+  background-color: hsl(var(--bg-card-hsl));
+  color: #fff;
+}
+
+/* Custom Buttons */
+.btn-primary-glass {
+  background: linear-gradient(135deg, hsl(var(--primary-hsl)) 0%, hsl(185, 90%, 45%) 100%);
+  border: none;
+  color: #0f172a;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 20px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary-glass:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px hsla(var(--primary-hsl), 0.5);
+  color: #0f172a;
+}
+
+.btn-primary-glass:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: hsl(var(--text-hsl));
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 20px;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* Glassmorphic Toast Notifications */
+.glassmorphic-toast {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-left: 5px solid currentColor !important;
+  border-radius: 8px !important;
+  animation: slideIn 0.3s ease forwards;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sidebar Dashboard Layouts */
+.sidebar-layout {
+  display: flex;
+  min-height: calc(100vh - 56px); /* minus navbar height */
+}
+
+.dashboard-sidebar {
+  width: 260px;
+  min-width: 260px;
+  background: rgba(15, 23, 42, 0.85);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: hsl(var(--text-muted-hsl));
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-nav-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.sidebar-nav-link.active {
+  background: hsla(var(--primary-hsl), 0.15);
+  color: hsl(var(--primary-hsl));
+  border-left: 4px solid hsl(var(--primary-hsl));
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--bg-dark-hsl));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive sidebar tweaks */
+@media (max-width: 768px) {
+  .sidebar-layout {
+    flex-direction: column;
+  }
+  .dashboard-sidebar {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Doctor listing styles */
+.spec-badge {
+  background: rgba(0, 242, 254, 0.1);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  color: hsl(180, 85%, 45%);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-pending {
+  background: rgba(255, 193, 7, 0.15);
+  color: #ffc107;
+  border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.status-accepted {
+  background: rgba(40, 167, 69, 0.15);
+  color: #28a745;
+  border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+.status-approved {
+  background: rgba(40, 167, 69, 0.15);
+  color: #28a745;
+  border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+.status-rejected {
+  background: rgba(220, 53, 69, 0.15);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.status-cancelled {
+  background: rgba(108, 117, 125, 0.15);
+  color: #6c757d;
+  border: 1px solid rgba(108, 117, 125, 0.2);
+}
