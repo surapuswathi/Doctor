@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5001/api',
+  baseURL: 'baseURL: 'https://book-a-doctor-eoiy.onrender.com/api'',
   headers: {
     'Content-Type': 'application/json',
   },
