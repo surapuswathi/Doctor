@@ -44,7 +44,7 @@ app.use(
 );
 
 // Handle preflight OPTIONS requests for all routes
-app.options('*', cors());
+app.options(/.*/, cors());
 
 // Body parser
 app.use(express.json());
