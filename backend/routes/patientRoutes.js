@@ -1,7 +1,7 @@
 const express = require('express');
 const {
   getDoctors,
-  getDoctorById,c
+  getDoctorById,
   bookAppointment,
   getAppointments,
   cancelAppointment,

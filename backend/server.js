@@ -18,18 +18,36 @@ connectDB();
 
 const app = express();
 
-// Body parser
-app.use(express.json());
+// Enable CORS — must be FIRST before body parser and all routes
+// Supports both port 5173 and 5174 (Vite picks the next available port)
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:5174',
+];
 
-// Enable CORS
 app.use(
   cors({
-    origin: "http://localhost:5174",
+    origin: (origin, callback) => {
+      // Allow requests with no origin (Postman, curl, server-to-server)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS policy blocked origin: ${origin}`));
+    },
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
+
+// Handle preflight OPTIONS requests for all routes
+app.options('*', cors());
+
+// Body parser
+app.use(express.json());
 
 // Mount routers
 app.use('/api/auth', authRoutes);
